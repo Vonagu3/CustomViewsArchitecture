@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CustomViewsArchitecture</string>
+    <string name="how_to_load_images">how to load images</string>
+    <string name="wifi_only">wifi only</string>
+    <string name="also_mobile">wifi + mobile</string>
+    <string name="no_connection_exception">No internet connection\n</string>
+    <string name="service_unavailable_exception">Service is unavailable</string>
 </resources>
