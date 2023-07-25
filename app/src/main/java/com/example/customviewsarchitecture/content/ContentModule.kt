@@ -22,13 +22,14 @@ class ContentModule(private val core: Core) : Module<ContentViewModel> {
         )
         return ContentViewModel(
             ContentCommunication.Base(),
-            loadingModeCache,
             DispatchersList.Base(),
             ContentInteractor.Base(
                 repository,
                 HandleError.Domain(core.manageResource()),
                 NewsUiMapper.Base(loadingModeCache)
-            )
+            ),
+            core.settingsChanged(),
+            core.navigation()
         )
     }
 }

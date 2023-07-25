@@ -2,9 +2,11 @@ package com.example.customviewsarchitecture.core
 
 import android.content.Context
 import com.example.customviewsarchitecture.main.NavigationCommunication
+import com.example.customviewsarchitecture.settings.presentation.SettingsChangedCommunication
 
-class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageResource {
+class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageResource, ProvideSettingsChangedCommunication {
 
+    private val settingsChanged = SettingsChangedCommunication.Base()
     private val manageResource = ManageResource.Base(context)
     private val navigation = NavigationCommunication.Base()
     private val storage =
@@ -20,6 +22,10 @@ class Core(context: Context) : ProvideNavigation, ProvideStorage, ProvideManageR
 
     override fun manageResource(): ManageResource {
         return manageResource
+    }
+
+    override fun settingsChanged(): SettingsChangedCommunication.Mutable {
+        return settingsChanged
     }
 
     companion object {
@@ -40,4 +46,8 @@ interface ProvideStorage {
 interface ProvideManageResource {
 
     fun manageResource(): ManageResource
+}
+
+interface ProvideSettingsChangedCommunication {
+    fun settingsChanged(): SettingsChangedCommunication.Mutable
 }
