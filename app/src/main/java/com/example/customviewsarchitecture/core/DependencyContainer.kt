@@ -5,6 +5,8 @@ import com.example.customviewsarchitecture.content.ContentModule
 import com.example.customviewsarchitecture.content.presentation.ContentViewModel
 import com.example.customviewsarchitecture.main.MainModule
 import com.example.customviewsarchitecture.main.MainViewModel
+import com.example.customviewsarchitecture.settings.SettingModule
+import com.example.customviewsarchitecture.settings.SettingViewModel
 
 interface DependencyContainer {
 
@@ -24,6 +26,7 @@ interface DependencyContainer {
             when (className) {
                 MainViewModel::class.java -> MainModule(core)
                 ContentViewModel::class.java -> ContentModule(core)
+                SettingViewModel::class.java -> SettingModule(core)
                 else -> dependencyContainer.module(className)
             }
     }

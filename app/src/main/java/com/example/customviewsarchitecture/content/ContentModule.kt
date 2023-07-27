@@ -21,14 +21,14 @@ class ContentModule(private val core: Core) : Module<ContentViewModel> {
             HandleError.Data()
         )
         return ContentViewModel(
+            core.settingsChangedCommunication(),
             ContentCommunication.Base(),
-            loadingModeCache,
             DispatchersList.Base(),
             ContentInteractor.Base(
                 repository,
                 HandleError.Domain(core.manageResource()),
                 NewsUiMapper.Base(loadingModeCache)
-            )
+            ),
         )
     }
 }
