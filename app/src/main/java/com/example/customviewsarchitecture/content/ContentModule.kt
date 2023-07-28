@@ -21,6 +21,7 @@ class ContentModule(private val core: Core) : Module<ContentViewModel> {
             HandleError.Data()
         )
         return ContentViewModel(
+            core.navigation(),
             core.settingsChangedCommunication(),
             ContentCommunication.Base(),
             DispatchersList.Base(),

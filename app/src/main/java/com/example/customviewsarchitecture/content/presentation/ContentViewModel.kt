@@ -4,16 +4,18 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.customviewsarchitecture.content.data.LoadingModeCache
 import com.example.customviewsarchitecture.content.domain.ContentInteractor
 import com.example.customviewsarchitecture.core.DispatchersList
 import com.example.customviewsarchitecture.core.Init
 import com.example.customviewsarchitecture.main.Communication
+import com.example.customviewsarchitecture.main.NavigationCommunication
 import com.example.customviewsarchitecture.settings.SettingsChangedCommunication
+import com.example.customviewsarchitecture.settings.SettingsScreen
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ContentViewModel(
+    private val navigationCommunication: NavigationCommunication.Update,
     private val settingsChangedCommunication: SettingsChangedCommunication.Observe,
     private val communication: ContentCommunication,
     private val dispatchersList: DispatchersList,
@@ -41,6 +43,10 @@ class ContentViewModel(
 
     fun observeSettingChanged(owner: LifecycleOwner, observer: Observer<Boolean>) {
         settingsChangedCommunication.observe(owner, observer)
+    }
+
+    fun showSettings() {
+        navigationCommunication.map(SettingsScreen)
     }
 }
 

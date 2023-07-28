@@ -29,6 +29,9 @@ class ContentFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        view.findViewById<View>(R.id.settingsButton).setOnClickListener {
+            viewModel.showSettings()
+        }
 
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         val adapter = NewsAdapter()
