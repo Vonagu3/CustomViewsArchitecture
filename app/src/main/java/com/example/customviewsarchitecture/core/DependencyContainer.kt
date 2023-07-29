@@ -1,6 +1,8 @@
 package com.example.customviewsarchitecture.core
 
 import androidx.lifecycle.ViewModel
+import com.example.customviewsarchitecture.category.ChooseCategoryModule
+import com.example.customviewsarchitecture.category.presentation.ChooseCategoryViewModel
 import com.example.customviewsarchitecture.content.ContentModule
 import com.example.customviewsarchitecture.content.presentation.ContentViewModel
 import com.example.customviewsarchitecture.main.MainModule
@@ -27,6 +29,7 @@ interface DependencyContainer {
                 MainViewModel::class.java -> MainModule(core)
                 ContentViewModel::class.java -> ContentModule(core)
                 SettingViewModel::class.java -> SettingModule(core)
+                ChooseCategoryViewModel::class.java -> ChooseCategoryModule(core)
                 else -> dependencyContainer.module(className)
             }
     }

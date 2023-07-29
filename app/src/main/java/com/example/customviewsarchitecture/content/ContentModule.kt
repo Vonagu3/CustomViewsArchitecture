@@ -1,5 +1,7 @@
 package com.example.customviewsarchitecture.content
 
+import com.example.customviewsarchitecture.category.data.ChosenCategory
+import com.example.customviewsarchitecture.category.data.NewsCategories
 import com.example.customviewsarchitecture.content.data.BaseContentRepository
 import com.example.customviewsarchitecture.content.data.ContentCloudDataSource
 import com.example.customviewsarchitecture.content.data.LoadingModeCache
@@ -17,7 +19,10 @@ class ContentModule(private val core: Core) : Module<ContentViewModel> {
     override fun viewModel(): ContentViewModel {
         val loadingModeCache = LoadingModeCache.Base(core.storage())
         val repository = BaseContentRepository(
-            ContentCloudDataSource.Base(MakeNewsService.Base().service()),
+            ContentCloudDataSource.Base(
+                MakeNewsService.Base().service(),
+                ChosenCategory.Base(NewsCategories.Base(), core.storage())
+            ),
             HandleError.Data()
         )
         return ContentViewModel(
